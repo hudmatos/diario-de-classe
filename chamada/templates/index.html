@@ -6,7 +6,7 @@
 
 {% block 'dashboard' %}
 
-<div class="container" style="max-height: 100%; overflow-y: auto;">
+<div class="container">
     <h1 class="mb-5">Chamada</h1>
     <form action="/chamada/{{relacao.id}}/" method="POST">{% csrf_token %}
         <div class="card" style="width: 100%;">

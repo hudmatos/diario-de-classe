@@ -14,7 +14,7 @@
 
 </head>
 <body>
- <div class="container-fluid p-0" style="height: 100%; position: relative;">
+ <div class="container-fluid p-0" style="position: absolute; height: 100%;">
     <nav class="nav p-3" style="border: 1px solid black">
         <a href="#" id="icon-menu" class="d-flex align-items-center gap-3 mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" id="icon-menu">
             <i class="bi bi-list" style="font-size: 2rem;"></i>
@@ -25,11 +25,11 @@
         </a>
     </nav>
 
-    <div class="d-flex" style="height: 100%;">
+    <div class="d-flex" style="height: -webkit-fill-available; position: absolute; width: 100%;">
         
         {% include 'static/general/html/sidebar.html' %}
         
-        <main>
+        <main style="overflow: auto;">
             {% block 'dashboard' %}
             {% endblock %}
         </main>
