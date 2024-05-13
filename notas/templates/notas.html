@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'header' %}
+  <h1>{{ relacao.materia.nome }}</h1>
+{% endblock %}
+
+{% block 'dashboard' %}
+
+<div class="container-md d-flex p-2 flex-column mb-3">
+  <h1 class="mb-5">Notas</h1>
+  <br>
+  <div class="container-md">
+    <div class="accordion" id="accordionExample">
+      {% for aluno in relacao.alunos %}
+     
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{aluno.0.id}}" aria-expanded="true" aria-controls="collapse{{aluno.0.id}}">
+              <div class="d-flex flex-column">
+                <span>{{ aluno.0.nome }}</span>
+                <span>{{ aluno.0.matricula }}</span>
+                <div>Media: <span>{{ aluno.1.media }}</span></div>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse{{ aluno.0.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <form action="/notas/{{relacao.id}}/" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Avaliação 01</label>
+                  <input type="text" class="form-control nota-1" id="exampleInputEmail1" name="nota01" value="{{ aluno.1.nota01 }}" placeholder="0.0">
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Avaliação 02</label>
+                  <input type="text" class="form-control nota-2" id="exampleInputPassword1" name="nota02" value="{{aluno.1.nota02}}" placeholder="0.0">
+                </div>
+
+                <input name="aluno-id" style="display: none" value="{{aluno.0.id}}">
+                
+                <button type="submit" class="btn btn-primary">Salvar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>     
+  </div>
+</div>
+{% endblock %}
+
+{% block 'javascript' %}
+<script src="{% static 'notas/js/notas.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'header' %}
+    <h1>{{relacao.materia.nome}}</h1>
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="d-flex justify-content-between mb-5">
+        <h1>Programados</h1>
+        <div>
+            <button type="button" class="btn btn-primary btn-nova-programacao" data-bs-toggle="modal" data-bs-target="#exampleModal">Novo</button>
+        </div>
+    </div>
+    <div class="row">
+        {% if relacao.programados %}
+            {% for programado in relacao.programados %}
+                {% include 'card.html' %}
+            {% endfor %}
+        {% else %}
+            <p>Você não possui nenhum conteúdo programático!</p>
+        {% endif %}
+    </div>
+    {% include 'modal.html' %}
+    
+{% endblock %}
+
+{% block 'javascript' %}
+    <script src="{% static 'programados/js/scripts.js' %}"></script>
+{% endblock %}
+

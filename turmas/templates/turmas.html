@@ -1,0 +1,37 @@
+{% extends 'turmas_base.html' %}
+
+{% block 'header' %}
+    <h2>Minhas turmas</h2>
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="row p-5 ">
+        <br>
+        {% for rel in relacao %}
+        <a href="{% url 'home' id=rel.id %}" class="text-decoration-none">
+            <div class="card col-md-12 mb-4 p-0">
+                <div class="card-header">
+                    <h5>{{rel.materia.nome}}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <span>Turma</span>
+                        <span>{{ rel.turma.nome }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Periodo</span>
+                        <span>{{rel.turma.periodo}}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>Materia</span>
+                        <span>{{rel.materia.nome}}</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </a> 
+        
+        {% endfor %}
+        
+    </div>
+{% endblock %}

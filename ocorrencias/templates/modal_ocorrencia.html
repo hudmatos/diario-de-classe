@@ -1,0 +1,28 @@
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Nova ocorrencia</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/ocorrencias/{{relacao.id}}/" method="POST">{% csrf_token %}
+                <div class="mb-3">
+                    <label for="titulo" class="col-form-label">Titulo:</label>
+                    <input type="text" class="form-control" name="titulo" id="ocorrencia-titulo">
+                </div>
+                <div class="mb-3">
+                    <label for="descricao" class="col-form-label">Descrição:</label>
+                    <textarea class="form-control" name="descricao" id="ocorrencia-descricao">
+                    </textarea>
+
+                    <input type="text" name="id" id="ocorrencia-id" style="display:none;">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>

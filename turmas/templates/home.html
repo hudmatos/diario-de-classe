@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block 'header' %}
+    <h2>{{ relacao.materia.nome }}</h2>
+{% endblock %}
+
+{% block 'dashboard' %}
+    <p>Seja bem vindo {{ relacao.professor.nome }}</p>
+{% endblock %}

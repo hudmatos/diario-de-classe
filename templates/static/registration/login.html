@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="{% static 'registration/login.css' %}">
+</head>
+<body>
+    <div class="login-container">
+        <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+            <img src="https://portal.aquivocepode.com.br/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo-avp-color.c0595a98.png&w=640&q=75" alt="Logo"> 
+            <div class="form_login">
+                <input type="text" id="username" name="username" placeholder="Usuário">
+            </div>
+            <div class="form_login">
+                <input type="password" id="password" name="password" placeholder="Senha">
+            </div>
+            <button type="submit">LOGIN</button>
+        </form>
+        <br>
+        <br>
+        <p class="esqueceu">Esqueceu sua senha? <a href="#">Recuperar senha</a></p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            var username = document.getElementById('username').value.trim();
+            var password = document.getElementById('password').value.trim();
+            
+            if (!username || !password) {
+                event.preventDefault(); // Impede o envio do formulário se os campos estiverem vazios
+                alert('Por favor, preencha todos os campos.');
+            }
+        });
+    </script>
+</body>
+</html>

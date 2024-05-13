@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'header' %}
+    <h1>{{relacao.materia.nome}}</h1>
+{% endblock %}
+
+{% block 'dashboard' %}
+    <div class="d-flex justify-content-between mb-5">
+        <h1>Ocorrencias</h1>
+        <div>
+            <button type="button" class="btn btn-primary btn-nova-ocorrencia" data-bs-toggle="modal" data-bs-target="#exampleModal">Novo</button>
+        </div>
+    </div>
+    <div class="row">
+        {% if relacao.ocorrencias %}
+            {% for ocorrencia in relacao.ocorrencias %}
+                {% include 'card_ocorrencia.html' %}
+            {% endfor %}
+        {% else %}
+            <p>Você não possui nenhum relatório de ocorrencias!</p>
+        {% endif %}
+    </div>
+    {% include 'modal_ocorrencia.html' %}
+    
+{% endblock %}
+
+{% block 'javascript' %}
+    <script src="{% static 'ocorrencias/js/scripts.js' %}"></script>
+{% endblock %}
+
